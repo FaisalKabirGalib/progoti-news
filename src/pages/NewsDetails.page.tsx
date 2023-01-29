@@ -11,9 +11,9 @@ const NewsDetailsPage: FC<INewsDetailsPageProps> = ({ }) => {
     const { title, description, image } = newsItemList[Number(id)]
     return (
         <TwoItemGrid>
-            <div className='col-span-2'>
+            <div className='md:col-span-2 sm:col-span-1 max-w-[100vw]'>
                 {image && <div className='flex items-center justify-center'>
-                    <img className='max-w-lg  object-scale-down h-68' src={image} alt={title} />
+                    <img className='lg:max-w-lg  object-cover md:h-68 sm:max-w-full' src={image} alt={title} />
                 </div>}
 
                 <div className="h-10"></div>

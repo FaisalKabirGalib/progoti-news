@@ -13,9 +13,7 @@ export const AboutPage: FC<IAboutPageProps> = ({ }) => {
 
 
         <TwoItemGrid>
-            <div className='col-span-2'>
-                <p className='text-center'>{cat} {sub && `/  ${sub}`}</p>
-            </div>
+
             {newsItemList.sort().map((item, index) => <NewsItem {...item} id={index} />)}
         </TwoItemGrid>
 
