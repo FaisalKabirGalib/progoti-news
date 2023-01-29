@@ -79,6 +79,38 @@ export function classNames(...classes: any[]) {
     return classes.filter(Boolean).join(' ')
 }
 
+const navbarList = [{
+    name: 'প্রচ্ছদ',
+    subMenu: []
+}, {
+    name: 'সংগঠন',
+    submenu: [
+        'ইতিহাস', 'সংবাদ', 'কমিটি'
+    ]
+
+}, {
+    name: 'বিজ্ঞপ্তি',
+    subMenu: []
+},
+{
+    name: 'অভিমত',
+    subMenu: ['চিঠিপত্র', 'সম্পাদকীয়', 'গ্রন্থালোচনা']
+},
+{
+    name: 'অভিমত',
+    subMenu: ['প্রবন্ধ', 'নিবন্ধ', 'নাটক', 'উপন্যাস', 'গল্প', 'কবিতা', 'ছড়া', 'লিমেরিক', 'বিশেষ রচনা', 'ভ্রমণকাহিনী', , 'অনুগল্প', 'স্মৃতিচারণ']
+},
+{
+    name: 'পত্রিকা',
+    subMenu: ['প্রগতিপত্র']
+},
+{
+    name: 'অন্যান্য',
+    subMenu: ['বিজ্ঞাপন', 'ছবি ', 'সূচিপত্র', 'সংবাদ']
+},
+]
+
+
 export default function Example() {
     return (
         <Popover className="relative bg-white">
