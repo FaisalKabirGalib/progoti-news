@@ -16,6 +16,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import PopDropDownItem from './NavBar/PopDropDownItem'
+import { Link } from 'react-router-dom'
 
 const solutions = [
     {
@@ -81,7 +82,7 @@ export function classNames(...classes: any[]) {
 
 const navbarList = [{
     name: 'প্রচ্ছদ',
-    subMenu: []
+    submenu: []
 }, {
     name: 'সংগঠন',
     submenu: [
@@ -90,23 +91,23 @@ const navbarList = [{
 
 }, {
     name: 'বিজ্ঞপ্তি',
-    subMenu: []
+    submenu: []
 },
 {
     name: 'অভিমত',
-    subMenu: ['চিঠিপত্র', 'সম্পাদকীয়', 'গ্রন্থালোচনা']
+    submenu: ['চিঠিপত্র', 'সম্পাদকীয়', 'গ্রন্থালোচনা']
 },
 {
     name: 'অভিমত',
-    subMenu: ['প্রবন্ধ', 'নিবন্ধ', 'নাটক', 'উপন্যাস', 'গল্প', 'কবিতা', 'ছড়া', 'লিমেরিক', 'বিশেষ রচনা', 'ভ্রমণকাহিনী', , 'অনুগল্প', 'স্মৃতিচারণ']
+    submenu: ['প্রবন্ধ', 'নিবন্ধ', 'নাটক', 'উপন্যাস', 'গল্প', 'কবিতা', 'ছড়া', 'লিমেরিক', 'বিশেষ রচনা', 'ভ্রমণকাহিনী', , 'অনুগল্প', 'স্মৃতিচারণ']
 },
 {
     name: 'পত্রিকা',
-    subMenu: ['প্রগতিপত্র']
+    submenu: ['প্রগতিপত্র']
 },
 {
     name: 'অন্যান্য',
-    subMenu: ['বিজ্ঞাপন', 'ছবি ', 'সূচিপত্র', 'সংবাদ']
+    submenu: ['বিজ্ঞাপন', 'ছবি ', 'সূচিপত্র', 'সংবাদ']
 },
 ]
 
@@ -133,97 +134,28 @@ export default function Example() {
                         </Popover.Button>
                     </div>
                     <Popover.Group as="nav" className="hidden space-x-10 md:flex">
-                        <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                            প্রচ্ছদ
-                        </a>
-                        <PopDropDownItem items={[
-                            {
-                                level: 'ইতিহাস ',
-                                route: '/obhito'
-                            },
-                            {
-                                level: 'কমিটি',
-                                route: '/obhito'
-                            },
-                            {
-                                level: 'সংবাদ ',
-                                route: '/feature'
+                        {navbarList.map((item, index) => {
+                            if (item.submenu.length > 0) {
+                                return <PopDropDownItem key={index} items={item.submenu.map(it => {
+                                    return {
+                                        level: it ?? '',
+                                        route: `/news/${item.name}/${it}`
+                                    }
+                                })} label={item.name} />
                             }
-                        ]} label={'সংগঠন'} />
+
+                            return <Link key={index} to={`/news/${item.name}`} className="text-base font-medium text-gray-500 hover:text-gray-900">
+                                {item.name}
+                            </Link>
+                        })}
 
 
-                        <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                            বিজ্ঞপ্তি
-                        </a>
-                        <PopDropDownItem items={[{
-                            level: 'চিঠিপত্র',
-                            route: '/obhito'
-                        },
-                        {
-                            level: 'সম্পাদকীয়',
-                            route: '/feature'
-                        },
-                        {
-                            level: 'গ্রন্থালোচনা',
-                            route: '/feature'
-                        }
 
-                        ]} label={'অভিমত'} />
-                        <PopDropDownItem items={[{
-                            level: 'বিজ্ঞাপন',
-                            route: '/obhito'
-                        },
-                        {
-                            level: 'ছবি',
-                            route: '/feature'
-                        },
-                        {
-                            level: 'সূচিপত্র',
-                            route: '/feature'
-                        },
-                        {
-                            level: 'সংবাদ',
-                            route: '/feature'
-                        }
 
-                        ]} label={'অন্যান্য'} />
-                        <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                            পত্রিকা
-                        </a>
-                        <PopDropDownItem items={[{
-                            level: 'প্রবন্ধ',
-                            route: '/obhito'
-                        },
-                        {
-                            level: 'নাটক',
-                            route: '/feature'
-                        },
-                        {
-                            level: 'নিবন্ধ',
-                            route: '/feature'
-                        },
-                        {
-                            level: 'উপন্যাস',
-                            route: '/feature'
-                        },
-                        {
-                            level: 'গল্প',
-                            route: '/feature'
-                        },
-                        {
-                            level: 'কবিতা',
-                            route: '/feature'
-                        },
-                        {
-                            level: 'ছড়া',
-                            route: '/feature'
-                        },
-                        {
-                            level: 'লিমেরিক',
-                            route: '/feature'
-                        },
+                        {/* <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            প্রচ্ছদ
+                        </a> */}
 
-                        ]} label={'আর্কাইভ'} />
                     </Popover.Group>
                     {/* <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
                         <a href="#" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
@@ -268,16 +200,21 @@ export default function Example() {
                             </div>
                             <div className="mt-6">
                                 <nav className="grid gap-y-8">
-                                    {solutions.map((item) => (
-                                        <a
-                                            key={item.name}
-                                            href={item.href}
-                                            className="-m-3 flex items-center rounded-md p-3 hover:bg-gray-50"
-                                        >
-                                            <item.icon className="h-6 w-6 flex-shrink-0 text-indigo-600" aria-hidden="true" />
-                                            <span className="ml-3 text-base font-medium text-gray-900">{item.name}</span>
-                                        </a>
-                                    ))}
+                                    {navbarList.map((item, index) => {
+                                        if (item.submenu.length > 0) {
+                                            return <PopDropDownItem key={index} items={item.submenu.map(it => {
+                                                return {
+                                                    level: it ?? '',
+                                                    route: `/news/${item.name}/${it}`
+                                                }
+                                            })} label={item.name} />
+                                        }
+
+                                        return <Link key={index} to={`/news/${item.name}`} className="text-base font-medium text-gray-500 hover:text-gray-900">
+                                            {item.name}
+                                        </Link>
+                                    })}
+
                                 </nav>
                             </div>
                         </div>

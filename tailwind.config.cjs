@@ -5,9 +5,14 @@ module.exports = {
     'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens:{
+        'xs': '320px',
+      }
+      // extends screens breakpoints
+     
   },
   plugins: [
     require('flowbite/plugin')
   ],
-}
+}}

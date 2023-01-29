@@ -1,5 +1,5 @@
 import { Popover, Transition } from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { ChevronDownIcon, Squares2X2Icon } from '@heroicons/react/24/outline';
 import { FC, Fragment } from 'react';
 
 export interface IPopDropDownItemProps {
@@ -56,7 +56,7 @@ const PopDropDownItem: FC<IPopDropDownItemProps> = ({ items, label }) => {
                                             href={route}
                                             className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
                                         >
-                                            {/* <item.icon className="h-6 w-6 flex-shrink-0 text-indigo-600" aria-hidden="true" /> */}
+                                            <Squares2X2Icon className="h-6 w-6 flex-shrink-0 text-indigo-600" aria-hidden="true" />
                                             <div className="ml-4">
                                                 <p className="text-base font-medium text-gray-900">{level}</p>
                                                 {/* <p className="mt-1 text-sm text-gray-500">{item.description}</p> */}
