@@ -1,16 +1,18 @@
 import { FC } from 'react';
 import According from '../components/According';
 import NewsItem from '../components/NewsItem';
+import Headers from '../Layouts/Headers';
 
 export interface IHomePageProps {
 }
 
 // create sample random news post with random image title and description
-const newsItemList = [
+export const newsItemList = [
     {
         title: 'Duis nisi sit eiusmod consectetur consectetur nostrud incididunt nisi anim nostrud duis ut cillum.',
         description: 'Do aliquip esse fugiat veniam officia sunt aliquip dolor pariatur pariatur nisi officia Lorem. Lorem nostrud incididunt aliqua qui ullamco amet mollit. Ex nulla pariatur culpa duis in esse aliqua ex consequat culpa cupidatat.',
         image: 'https://flowbite.com/docs/images/products/apple-watch.png'
+
     },
     {
         title: 'Nulla pariatur ut reprehenderit anim occaecat laboris. Dolore elit commodo proident commodo occaecat. ',
@@ -36,31 +38,27 @@ const newsItemList = [
 ]
 export const HomePage: FC<IHomePageProps> = () => {
     return (
+
+
         <div>
             <p className='bg-stone-300 px-5 py-2'>Prothom Pata</p>
             <div className="h-10"></div>
-
             <div className="lg:grid md:grid-cols-4 md:gap-x-4">
                 <div className="col-span-3 grid md:grid-cols-2 sm:grid-col-1 sm:justify-center gap-y-6 gap-x-4">
                     {newsItemList.map((item, index) => {
-                        return <NewsItem key={index} title={item.title} description={item.description} image={item.image} />
+                        return <NewsItem key={index} title={item.title} description={item.description} image={item.image} id={index} />
                     })
                     }
-                    {/* <NewsItem  />
-                    <NewsItem />
-                    <NewsItem />
-                    <NewsItem />
-                    <NewsItem /> */}
                 </div>
                 <div className='xs:hidden lg:block md:hidden '>
                     <According />
                 </div>
 
             </div>
-
-
-
+            <div className="h-10" />
         </div>
+
+
     );
 }
 export default HomePage

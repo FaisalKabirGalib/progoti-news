@@ -16,7 +16,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import PopDropDownItem from './NavBar/PopDropDownItem'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 const solutions = [
     {
@@ -80,52 +80,76 @@ export function classNames(...classes: any[]) {
     return classes.filter(Boolean).join(' ')
 }
 
-const navbarList = [{
+type catergoryType = 'prochad' | 'songothon' | 'etihas' | 'songbad' | 'commetee' | 'biggopti' | 'ovimot' | 'chitipotro' | 'sompadhokiyo' | 'grondhosomalochona' | 'ovimot' | 'probondho' | 'nibondho' | 'natok' | 'uponnash' | 'golpo' | 'kobita' | 'sora' | 'limeric' | 'bises rochona' | 'vromonkahini' | 'onugolpo' | 'sriticharon' | 'protrika' | 'progotipatro' | 'biggopti' | 'chobi' | 'sucipatro' | 'other'
+
+const navbarList: { name: string, en: catergoryType, submenu: string[], ensubmenu?: catergoryType[] }[] = [{
     name: 'প্রচ্ছদ',
+    en: 'prochad',
     submenu: []
 }, {
     name: 'সংগঠন',
+    en: 'songothon',
     submenu: [
         'ইতিহাস', 'সংবাদ', 'কমিটি'
+    ],
+    ensubmenu: [
+        'etihas', 'songbad', 'commetee'
     ]
+
 
 }, {
     name: 'বিজ্ঞপ্তি',
-    submenu: []
+    submenu: [],
+    en: 'biggopti'
 },
 {
     name: 'অভিমত',
-    submenu: ['চিঠিপত্র', 'সম্পাদকীয়', 'গ্রন্থালোচনা']
+    en: 'ovimot',
+
+    submenu: ['চিঠিপত্র', 'সম্পাদকীয়', 'গ্রন্থালোচনা'],
+    ensubmenu: ['chitipotro', 'sompadhokiyo', 'grondhosomalochona']
+
 },
 {
     name: 'অভিমত',
-    submenu: ['প্রবন্ধ', 'নিবন্ধ', 'নাটক', 'উপন্যাস', 'গল্প', 'কবিতা', 'ছড়া', 'লিমেরিক', 'বিশেষ রচনা', 'ভ্রমণকাহিনী', , 'অনুগল্প', 'স্মৃতিচারণ']
+    en: 'ovimot',
+    submenu: ['প্রবন্ধ', 'নিবন্ধ', 'নাটক', 'উপন্যাস', 'গল্প', 'কবিতা', 'ছড়া', 'লিমেরিক', 'বিশেষ রচনা', 'ভ্রমণকাহিনী', 'অনুগল্প', 'স্মৃতিচারণ'],
+    ensubmenu: ['probondho', 'nibondho', 'natok', 'uponnash', 'golpo', 'kobita', 'sora', 'limeric', 'bises rochona', 'vromonkahini', 'onugolpo', 'sriticharon']
+
 },
 {
     name: 'পত্রিকা',
-    submenu: ['প্রগতিপত্র']
+    en: 'protrika',
+    submenu: ['প্রগতিপত্র'],
+    ensubmenu: ['progotipatro']
+
+
 },
 {
     name: 'অন্যান্য',
-    submenu: ['বিজ্ঞাপন', 'ছবি ', 'সূচিপত্র', 'সংবাদ']
+    en: 'other',
+    submenu: ['বিজ্ঞাপন', 'ছবি ', 'সূচিপত্র', 'সংবাদ'],
+    ensubmenu: ['biggopti', 'chobi', 'sucipatro', 'songbad']
+
 },
 ]
 
 
 export default function Example() {
+    const { pathname } = useLocation()
     return (
         <Popover className="relative bg-white">
             <div className="mx-auto max-w-7xl px-6">
                 <div className="flex items-center justify-between border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
                     <div className="flex justify-start lg:w-0 lg:flex-1">
-                        <a href="#">
+                        <Link to="/">
                             <span className="sr-only">Your Company</span>
                             <img
                                 className="h-8 w-auto sm:h-10"
                                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                                 alt=""
                             />
-                        </a>
+                        </Link>
                     </div>
                     <div className="-my-2 -mr-2 md:hidden">
                         <Popover.Button className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
@@ -139,35 +163,18 @@ export default function Example() {
                                 return <PopDropDownItem key={index} items={item.submenu.map(it => {
                                     return {
                                         level: it ?? '',
-                                        route: `/news/${item.name}/${it}`
+                                        route: `/news/${item.en}/${item.ensubmenu![item.submenu.indexOf(it)]}`
                                     }
                                 })} label={item.name} />
                             }
 
-                            return <Link key={index} to={`/news/${item.name}`} className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            return <Link key={index} to={`/news/${item.en}`} className={`text-base font-medium text-gray-500 hover:text-gray-900 ${pathname === `/news/${item.en}` ? 'bg-orange-400' : ''}`} >
                                 {item.name}
                             </Link>
                         })}
 
-
-
-
-                        {/* <a href="#" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                            প্রচ্ছদ
-                        </a> */}
-
                     </Popover.Group>
-                    {/* <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-                        <a href="#" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
-                            Sign in
-                        </a>
-                        <a
-                            href="#"
-                            className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                        >
-                            Sign up
-                        </a>
-                    </div> */}
+
                 </div>
             </div>
 

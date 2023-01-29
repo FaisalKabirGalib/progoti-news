@@ -1,27 +1,48 @@
+
 import {
     createBrowserRouter,
 
-    RouterProvider,
 } from "react-router-dom";
 import BaseLayouts from "../Layouts/Base.layout";
+
+import MainLayout from "../Layouts/MainLayout";
 import { AboutPage, HomePage } from "../pages";
+import NewsDetailsPage from "../pages/NewsDetails.page";
 
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        element: <BaseLayouts>
-            <HomePage />
-        </BaseLayouts>,
+
+        // root element for this route redirect to /home
+
+
         children: [
             {
-                path: "home",
                 index: true,
-                element: <HomePage />,
+
+                element: <BaseLayouts>
+                    <HomePage />
+                </BaseLayouts>,
+
             },
             {
-                path: "about",
-                element: <AboutPage />,
+                path: "news",
+                element: <MainLayout />,
+                children: [
+                    {
+                        path: "item/:id",
+                        element: <NewsDetailsPage />,
+                    },
+                    {
+                        path: ":cat",
+                        element: <AboutPage />,
+                    },
+                    {
+                        path: ":cat/:sub",
+                        element: <AboutPage />,
+                    }
+                ]
             },
         ],
     },

@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren } from 'react';
-import { Outlet } from 'react-router-dom';
 import Headers from './Headers';
+import Footer from './NavBar/Footer';
 
 export interface IBaseLayoutsProps extends PropsWithChildren {
 }
@@ -8,8 +8,8 @@ export interface IBaseLayoutsProps extends PropsWithChildren {
 const BaseLayouts: FC<IBaseLayoutsProps> = ({ children }) => (
     <div className='mx-10'>
         <Headers />
-        {children || <Outlet />}
-
+        {children}
+        <Footer />
     </div>
 )
 export default BaseLayouts
