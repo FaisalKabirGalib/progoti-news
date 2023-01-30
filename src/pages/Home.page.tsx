@@ -1,7 +1,6 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import According from '../components/According';
 import NewsItem from '../components/NewsItem';
-import Headers from '../Layouts/Headers';
 
 export interface IHomePageProps {
 }
@@ -37,6 +36,11 @@ export const newsItemList = [
 
 ]
 export const HomePage: FC<IHomePageProps> = () => {
+    useEffect(() => {
+
+
+
+    }, [])
     return (
 
 

@@ -6,6 +6,7 @@ import BaseLayouts from "../Layouts/Base.layout";
 
 import MainLayout from "../Layouts/MainLayout";
 import { AboutPage, HomePage } from "../pages";
+import AddNewsPage from "../pages/AddNews.page";
 import NewsDetailsPage from "../pages/NewsDetails.page";
 
 
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
                     <HomePage />
                 </BaseLayouts>,
 
+            },
+            {
+                path: 'add-news',
+                element: <AddNewsPage />
             },
             {
                 path: "news",

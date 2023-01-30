@@ -22,12 +22,7 @@ const AccordItem: FC<IAccordItemProps> = ({ children, heading, }) => {
             <div className={open ? "hidden" : ''} >
                 <div className="p-5 font-light border  border-gray-200 dark:border-gray-700 dark:bg-gray-900">
                     {children}
-                    {/* <ul className='list-none flex-col'>
-                        <li className='border-b-2 border-blue-300 p-2'>Ea magna enim commodo proident non commodo amet dolore nostrud ad irure est nulla.</li>
-                        <li className='border-b-2 border-blue-300 p-2'>Consequat non velit non non et minim in elit laboris ullamco sunt quis deserunt et.</li>
-                        <li className='border-b-2 border-blue-300 p-2'>Ex occaecat id veniam sint cupidatat.</li>
-                        <li className='border-b-2 border-blue-300 p-2'>Magna anim adipisicing eiusmod Lorem do veniam non.</li>
-                    </ul> */}
+
                 </div>
             </div>
         </>
