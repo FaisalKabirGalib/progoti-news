@@ -1,7 +1,6 @@
 
 import {
     createBrowserRouter,
-
 } from "react-router-dom";
 import BaseLayouts from "../Layouts/Base.layout";
 
@@ -13,10 +12,6 @@ import NewsDetailsPage from "../pages/NewsDetails.page";
 export const router = createBrowserRouter([
     {
         path: "/",
-
-        // root element for this route redirect to /home
-
-
         children: [
             {
                 index: true,
@@ -46,4 +41,4 @@ export const router = createBrowserRouter([
             },
         ],
     },
-]);
+], { basename: '/progoti-news/' });

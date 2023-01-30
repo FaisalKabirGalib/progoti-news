@@ -80,9 +80,9 @@ export function classNames(...classes: any[]) {
     return classes.filter(Boolean).join(' ')
 }
 
-type catergoryType = 'prochad' | 'songothon' | 'etihas' | 'songbad' | 'commetee' | 'biggopti' | 'ovimot' | 'chitipotro' | 'sompadhokiyo' | 'grondhosomalochona' | 'ovimot' | 'probondho' | 'nibondho' | 'natok' | 'uponnash' | 'golpo' | 'kobita' | 'sora' | 'limeric' | 'bises rochona' | 'vromonkahini' | 'onugolpo' | 'sriticharon' | 'protrika' | 'progotipatro' | 'biggopti' | 'chobi' | 'sucipatro' | 'other'
+export type catergoryType = 'prochad' | 'songothon' | 'etihas' | 'songbad' | 'commetee' | 'biggopti' | 'ovimot' | 'archive' | 'chitipotro' | 'sompadhokiyo' | 'grondhosomalochona' | 'ovimot' | 'probondho' | 'nibondho' | 'natok' | 'uponnash' | 'golpo' | 'kobita' | 'sora' | 'limeric' | 'bises rochona' | 'vromonkahini' | 'onugolpo' | 'sriticharon' | 'protrika' | 'progotipatro' | 'biggopti' | 'chobi' | 'sucipatro' | 'other'
 
-const navbarList: { name: string, en: catergoryType, submenu: string[], ensubmenu?: catergoryType[] }[] = [{
+export const navbarList: { name: string, en: catergoryType, submenu: string[], ensubmenu?: catergoryType[] }[] = [{
     name: 'প্রচ্ছদ',
     en: 'prochad',
     submenu: []
@@ -105,14 +105,13 @@ const navbarList: { name: string, en: catergoryType, submenu: string[], ensubmen
 {
     name: 'অভিমত',
     en: 'ovimot',
-
     submenu: ['চিঠিপত্র', 'সম্পাদকীয়', 'গ্রন্থালোচনা'],
     ensubmenu: ['chitipotro', 'sompadhokiyo', 'grondhosomalochona']
 
 },
 {
-    name: 'অভিমত',
-    en: 'ovimot',
+    name: 'আর্কাইভ',
+    en: 'archive',
     submenu: ['প্রবন্ধ', 'নিবন্ধ', 'নাটক', 'উপন্যাস', 'গল্প', 'কবিতা', 'ছড়া', 'লিমেরিক', 'বিশেষ রচনা', 'ভ্রমণকাহিনী', 'অনুগল্প', 'স্মৃতিচারণ'],
     ensubmenu: ['probondho', 'nibondho', 'natok', 'uponnash', 'golpo', 'kobita', 'sora', 'limeric', 'bises rochona', 'vromonkahini', 'onugolpo', 'sriticharon']
 

@@ -13,7 +13,7 @@ export interface ITwoItemGridProps extends PropsWithChildren {
 
 export const TwoItemGrid: FC<ITwoItemGridProps> = ({ children }) => {
     return (
-        <div className="col-span-3 grid md:grid-cols-2 sm:grid-col-1 sm:justify-center gap-y-6 gap-x-4">
+        <div className="col-span-3 grid  sm:grid-col-1 sm:justify-center gap-y-6 gap-x-4">
             {children}
         </div>
     );
