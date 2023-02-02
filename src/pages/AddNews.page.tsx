@@ -1,42 +1,38 @@
-import { FC, useEffect } from 'react';
-import { TextInput, Card, Label, Textarea } from 'flowbite-react'
-import useSWR from 'swr';
-import { get, ref } from 'firebase/database';
-import firebaseApp from '../firebase'
+import { FC, useState } from 'react';
+
+import AddPost from '../components/Form/AddPost';
+import AddCategories from '../components/Form/AddCategories';
+import DashBoard from '../components/DashBoard';
 
 export interface IAddNewsPageProps {
 }
 
-const getPost = () => get(ref(firebaseApp.db, '/news/'))
+
 const AddNewsPage: FC<IAddNewsPageProps> = ({ }) => {
+    const [isNewsPost, setIsNewPost] = useState(0)
 
 
-    const { data, isLoading, error } = useSWR('fetchData', getPost)
+
+
+    // const { data, isLoading, error } = useSWR('fetchData', getPost)
 
     return (
-        <div className='flex flex-col h-[100vh] min-w-lg items-center justify-center'>
-            {data && data.val() && Object.keys(data.val()).map((key) => {
-                const { title, category, description } = data.val()[key]
-                return (
-                    <Card key={key} className='w-full'>
-                        <div className='flex flex-col space-y-2'>
-                            <Label>{title}</Label>
-                            <Label>{category}</Label>
-                            <Label>{description}</Label>
-                        </div>
-                    </Card>
-                )
-            })
-            }
-            <div className='flex-col space-y-2'>
-                <TextInput placeholder='title' />
-                <TextInput placeholder='category' />
-                <Textarea placeholder='description' maxLength={10} />
-                <button className='bg-blue-500 text-white p-2 rounded-md'>Submit</button>
+        <div className='flex flex-col  '>
+            <div className="h-20"></div>
+
+            <div className="flex justify-around shadow-md">
+                <p className={isNewsPost === 0 ? 'border border-b-purple-500 p-3 bg-cyan-50 rounded-lg' : 'p-3'} onClick={() => setIsNewPost(0)}>Add News</p>
+                <p className={isNewsPost === 1 ? 'border border-b-purple-500 p-3 bg-cyan-50 rounded-lg' : 'p-3'} onClick={() => setIsNewPost(1)}>Add Categories</p>
+                <p className={isNewsPost === 2 ? 'border border-b-purple-500 p-3 bg-cyan-50 rounded-lg' : 'p-3'} onClick={() => setIsNewPost(2)}>DashBoard</p>
+            </div>
+
+            <div className="mx-[20vw] ">
+                {isNewsPost === 0 ? <AddPost /> : isNewsPost === 1 ? <AddCategories /> : <DashBoard />}
             </div>
         </div>
 
     )
 }
+
 
 export default AddNewsPage
