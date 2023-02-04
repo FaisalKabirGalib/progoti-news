@@ -18,15 +18,14 @@ export const trancuate = (str: string, length: number) => {
 
 const NewsItem: FC<INewsItemProps> = ({ title, description, image, date, id }) => {
     return (
-        <div className="max-w-sm max-h-min overflow-clip bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div className=" overflow-clip max-h-min bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
             {image ? <a href="#">
-                <img className="rounded-t-lg h-64 w-full object-cover" src={image} alt="" />
+                <img className="rounded-t-lg h-64 w-full object-contain" src={image} alt="" />
             </a> : null}
             <div className="p-5">
                 <Link to="#">
                     <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white text-center">{trancuate(title, 100)}</h5>
                 </Link>
-
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 text-justify ">{trancuate(description, 200)}</p>
                 <div className="flex items-center justify-between">
                     <p>{date || moment(Date.now()).format('LL')}</p>

@@ -2,6 +2,7 @@ import imageCompression from 'browser-image-compression';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { mutate } from 'swr';
+import { AllCATEGORIES } from '../../data/constant';
 import { usePushToFirebase } from '../../hooks/useRequestMutation';
 export interface IAddPostProps {
 }
@@ -20,7 +21,7 @@ const options = {
     useWebWorker: true
 }
 
-const allCategories = ['prochad', 'songothon', 'etihas', 'songbad', 'commetee', 'biggopti', 'ovimot', 'archive', 'chitipotro', 'sompadhokiyo', 'grondhosomalochona', 'ovimot', 'probondho', 'nibondho', 'natok', 'uponnash', 'golpo', 'kobita', 'sora', 'limeric', 'bises rochona', 'vromonkahini', 'onugolpo', 'sriticharon', 'protrika', 'progotipatro', 'biggopti', 'chobi', 'sucipatro', 'other', 'add-news']
+
 const AddPost: FC<IAddPostProps> = ({ }) => {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm()
@@ -91,7 +92,7 @@ const AddPost: FC<IAddPostProps> = ({ }) => {
                 <div className="mb-6">
                     <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select your Categories</label>
                     <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" {...register('cat')}>
-                        {["No Categories", ...allCategories].map((cat, i) => <option key={i} value={cat}>{cat}</option>)}
+                        {AllCATEGORIES.map(({ label }, i) => <option key={i} value={label.en}>{label.bn}</option>)}
                     </select>
                 </div>
                 <div className="mb-6">
@@ -109,10 +110,6 @@ const AddPost: FC<IAddPostProps> = ({ }) => {
 
                     })} />
                 </div>
-
-
-
-
                 <button type='submit' className='border py-2 w-full bg-cyan-700 text-white rounded-lg'>
                     Submit
                 </button>

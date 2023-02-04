@@ -20,6 +20,7 @@ export const TwoItemGrid: FC<ITwoItemGridProps> = ({ children }) => {
 }
 
 
+
 const MainLayout: FC<IMainLayoutProps> = () => {
 
     return (
@@ -27,13 +28,7 @@ const MainLayout: FC<IMainLayoutProps> = () => {
         <div className='mx-10'>
             <Headers />
 
-            <div className="lg:grid md:grid-cols-4 md:gap-x-4">
-                <Outlet />
-                <div className='xs:hidden lg:block md:hidden '>
-                    <According />
-                </div>
-
-            </div>
+            <Outlet />
             <div className="h-10"></div>
 
             <Footer />

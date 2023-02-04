@@ -3,20 +3,12 @@ import { Card } from 'flowbite-react';
 import { FC } from 'react';
 import useFetchNews from '../hooks/useFetchNews';
 import { useDeleteFromFirebase } from '../hooks/useRequestMutation';
+import { INewsItem } from '../types';
 
 
 export interface IDashBoardProps {
 }
-type snapType = {
-    cat: string,
-    heading: string,
-    subheading: string,
-    description: string,
-    img?: string,
-    id: string
 
-
-}
 
 export const processDataFromCategory = (data: DataSnapshot) => {
     let arr: any[] = []
@@ -26,7 +18,7 @@ export const processDataFromCategory = (data: DataSnapshot) => {
 
 
     })
-    return arr as snapType[]
+    return arr as Partial<INewsItem>[]
 
 }
 
@@ -45,7 +37,7 @@ const DashBoard: FC<IDashBoardProps> = ({ }) => {
             }
             )
         })
-        return arr as snapType[]
+        return arr as Partial<INewsItem>[]
         // const news = data.val()
         // const newsArr = Object.keys(news).map(key => ({ id: key, ...news[key] }))
         // return newsArr
