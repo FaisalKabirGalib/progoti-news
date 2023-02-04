@@ -1,6 +1,8 @@
+import { Menu } from '@headlessui/react';
 import { FC, useEffect } from 'react';
 import According from '../components/According';
 import NewsItem from '../components/NewsItem';
+import NavRederer from '../Layouts/NavBar/NavRederer';
 
 export interface IHomePageProps {
 }
@@ -60,7 +62,12 @@ export const HomePage: FC<IHomePageProps> = () => {
 
             </div>
             <div className="h-10" />
+
+
+
+
         </div>
+
 
 
     );

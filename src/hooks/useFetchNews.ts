@@ -7,8 +7,6 @@ const useFetchNews = (firebaseNode:string) => {
 
     const getRequestFunction = ()=> get(ref(firebaseApp.db, firebaseNode))
     
-    
-
     return useSWR(firebaseNode,getRequestFunction,)
 }
 

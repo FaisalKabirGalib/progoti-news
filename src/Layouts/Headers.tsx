@@ -2,27 +2,32 @@
 import { FC } from 'react';
 
 import Navbar from './Navbar';
-
+import LogoImg from '../assets/logo.png'
+import moment from 'moment';
 
 
 export interface IHeadersProps {
 }
 
-const Headers: FC<IHeadersProps> = ({ }) => {
+
+const bnDateTime = () => {
+
+    return moment().format('LL')
+
+}
+const Headers: FC<IHeadersProps> = () => {
     return (
         <header className='my-10'>
             <div className="flex flex-col items-center">
-                <img src={'http://www.weeklyekota.net/images/ekota_logo.jpg'} />
+                <img src={LogoImg} height={200} width={600} />
                 <div className="h-3"></div>
                 <p>
-                    রেজি, ডিএ ৪৫৬ ।। বর্ষ ৫৩ ।। সংখ্যা ২৫ ।। ২২ জানুয়ারী, ২০২৩ ।। ৮ মাঘ ১৪২৯ ।। রবিবার
+                    রেজি, ডিএ ৪৫৬ ।। বর্ষ ৫৩ ।। সংখ্যা ২৫ ।। {bnDateTime()}
                 </p>
                 <div className="h-6"></div>
             </div>
 
             <Navbar />
-
-
         </header>
     );
 }

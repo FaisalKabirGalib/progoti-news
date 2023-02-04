@@ -1,10 +1,10 @@
 import { Popover, Transition } from '@headlessui/react';
 import { ChevronDownIcon, Squares2X2Icon } from '@heroicons/react/24/outline';
-import { FC, Fragment } from 'react';
+import { FC, Fragment, PropsWithChildren } from 'react';
 import { Link } from 'react-router-dom';
 
-export interface IPopDropDownItemProps {
-    items: routeAndLevel[],
+export interface IPopDropDownItemProps extends PropsWithChildren {
+
     label: string
 }
 
@@ -12,14 +12,10 @@ export const classWithJsBoolean = (...classes: string[]) => {
     return classes.filter(Boolean).join(' ')
 }
 
-export type routeAndLevel = {
-    route: string,
-    level: string
-}
 
-const PopDropDownItem: FC<IPopDropDownItemProps> = ({ items, label }) => {
+
+const PopDropDownItem: FC<IPopDropDownItemProps> = ({ children, label }) => {
     return (
-
         <Popover className="relative">
             {({ open }) => (
                 <>
@@ -51,19 +47,8 @@ const PopDropDownItem: FC<IPopDropDownItemProps> = ({ items, label }) => {
                         <Popover.Panel className="absolute left-1/2 z-10 mt-3 w-screen max-w-md -translate-x-1/2 transform px-2 sm:px-0">
                             <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
                                 <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                                    {items.map(({ route, level }, index) => (
-                                        <Link
-                                            key={index}
-                                            to={route}
-                                            className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
-                                        >
-                                            <Squares2X2Icon className="h-6 w-6 flex-shrink-0 text-indigo-600" aria-hidden="true" />
-                                            <div className="ml-4">
-                                                <p className="text-base font-medium text-gray-900">{level}</p>
-                                                {/* <p className="mt-1 text-sm text-gray-500">{item.description}</p> */}
-                                            </div>
-                                        </Link>
-                                    ))}
+                                    {children}
+
                                 </div>
 
                             </div>
@@ -76,3 +61,18 @@ const PopDropDownItem: FC<IPopDropDownItemProps> = ({ items, label }) => {
     );
 }
 export default PopDropDownItem
+
+
+//  {items.map(({ route, level }, index) => (
+//     <Link
+//     key={index}
+//     to={route}
+//     className="-m-3 flex items-start rounded-lg p-3 hover:bg-gray-50"
+// >
+//     <Squares2X2Icon className="h-6 w-6 flex-shrink-0 text-indigo-600" aria-hidden="true" />
+//     <div className="ml-4">
+//         <p className="text-base font-medium text-gray-900">{level}</p>
+//         {/* <p className="mt-1 text-sm text-gray-500">{item.description}</p> */}
+//     </div>
+// </Link>
+// ))}
