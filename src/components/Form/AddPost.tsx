@@ -1,7 +1,9 @@
 import imageCompression from 'browser-image-compression';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { mutate } from 'swr';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.bubble.css'
+import 'react-quill/dist/quill.snow.css';
 import { AllCATEGORIES } from '../../data/constant';
 import { usePushToFirebase } from '../../hooks/useRequestMutation';
 export interface IAddPostProps {
@@ -16,17 +18,46 @@ export function getBase64(file: File) {
 }
 
 const options = {
-    maxSizeMB: 1,
-    maxWidthOrHeight: 1920,
+    maxSizeMB: 0.1,
+    maxWidthOrHeight: 720,
     useWebWorker: true
 }
+const TOOLBAR_OPTIONS = [
+    [{ header: [1, 2, 3, false] }],
+    ["bold", "italic", "underline", "strike", "blockquote", "link"],
+    [{ list: "ordered" }, { list: "bullet" }],
+    [{ indent: "-1" }, { indent: "+1" }],
+    ["image", "video"],
+    ["align", "direction"],
+    ["clean"]
+];
+
+const formates = [
+    'header',
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'blockquote',
+    'list',
+    'bullet',
+    'indent',
+    'link',
+    'image',
+    'video',
+    'align',
+    'direction',
+    'clean'
+]
 
 
 const AddPost: FC<IAddPostProps> = ({ }) => {
 
+
     const { register, handleSubmit, reset, formState: { errors } } = useForm()
 
     const { trigger, isMutating, error, data } = usePushToFirebase('createNews')
+    const [editor, setEditor] = useState('');
 
     const processImage = async (image?: File) => {
         if (!image) return ''
@@ -55,11 +86,12 @@ const AddPost: FC<IAddPostProps> = ({ }) => {
 
 
         trigger({
-            data: { ...data, img: image },
+            data: { ...data, img: image, 'description': editor, 'date': new Date().toDateString(), 'time': new Date().toLocaleTimeString() },
             path: `/news/${data.cat}`
         }, {
             onSuccess: () => {
                 reset()
+                setEditor('')
             }
         })
     }
@@ -110,6 +142,16 @@ const AddPost: FC<IAddPostProps> = ({ }) => {
 
                     })} />
                 </div>
+                <label htmlFor="message" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your News</label>
+                <ReactQuill modules={{
+                    toolbar: {
+                        container: TOOLBAR_OPTIONS
+                    }
+
+                }} formats={formates} value={editor} onChange={setEditor} />
+
+                <ReactQuill value={editor} readOnly theme={'bubble'} />
+
                 <button type='submit' className='border py-2 w-full bg-cyan-700 text-white rounded-lg'>
                     Submit
                 </button>

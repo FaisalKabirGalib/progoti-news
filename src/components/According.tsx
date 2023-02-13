@@ -1,6 +1,5 @@
 
 import { FC } from 'react';
-import { NAVBARITEMS } from '../data/constant';
 import AccordItem from '../Layouts/NavBar/AccordItem';
 
 export interface IAccordingProps {
@@ -94,7 +93,7 @@ const progotiItems = [
         type: 'link',
     },
     {
-        label: { en: 'progoti-10', bn: 'অগ্রহায়ণ ১৪৩০ বঙ্গাব্দ ।। নভেম্বর-ডিসেম্বর ২০২৩ খ্রিস্টাব্দ' },
+        label: { en: 'progoti-10', bn: ' দশম সংখ্যা ~ অগ্রহায়ণ ১৪৩০ বঙ্গাব্দ ।। নভেম্বর-ডিসেম্বর ২০২৩ খ্রিস্টাব্দ' },
         type: 'link',
     },
 ]

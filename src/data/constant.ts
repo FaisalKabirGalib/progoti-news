@@ -8,6 +8,10 @@ import { menuItem } from "../types";
         type:'link',
     },
     {
+        label:{en:'Biggopti',bn:'বিজ্ঞপ্তি'},
+        type:'link',
+},
+    {
         label:{en:'Songbad',bn:'সংবাদ'},
         type:'link'    
     },
