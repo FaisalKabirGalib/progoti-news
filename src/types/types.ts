@@ -5,7 +5,8 @@ export interface INewsItem{
     description: string
     img?: string
     id: string
-    date:Date
+    date?: Date
+    
 }
 export type childType = {label:{en:string,bn:string},type:string,child?:{label:{en:string,bn:string},type:string}[]}
 export type menuItem = {

@@ -3,6 +3,7 @@ import { FC, useState } from 'react';
 import AddPost from '../components/Form/AddPost';
 import AddCategories from '../components/Form/AddCategories';
 import DashBoard from '../components/DashBoard';
+import Headers from '../Layouts/Headers';
 
 export interface IAddNewsPageProps {
 }
@@ -18,6 +19,7 @@ const AddNewsPage: FC<IAddNewsPageProps> = ({ }) => {
 
     return (
         <div className='flex flex-col  '>
+            <Headers />
             <div className="h-20"></div>
 
             <div className="flex justify-around shadow-md">

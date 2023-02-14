@@ -1,9 +1,9 @@
 import { FC } from 'react';
+import ReactQuill from 'react-quill';
 import { useParams } from 'react-router-dom';
 import According from '../components/According';
 import useFetchNews from '../hooks/useFetchNews';
-import { TwoItemGrid } from '../Layouts/MainLayout';
-
+import 'react-quill/dist/quill.bubble.css'
 
 export interface INewsDetailsPageProps {
 }
@@ -30,9 +30,10 @@ const NewsDetailsPage: FC<INewsDetailsPageProps> = ({ }) => {
                     <h1 className='font-bold text-gray-800 text-2xl'>{data?.val()['heading'] ?? 'No Heading'}</h1>
                     <div className="h-10"></div>
                     <p className='text-right text-gray-500'>{data?.val()['subheading'] ?? 'No subHeading'}</p>
-                    <p>{data?.val()['description'] ?? 'No subHeading'}</p>
-                </div>
+                    <ReactQuill value={`<p>${data?.val()['description'] ?? 'No Description'}</p>`} readOnly theme={'bubble'} />
 
+                    {/*  */}
+                </div>
             </div>
             <div className='xs:hidden lg:block md:hidden '>
                 <According />

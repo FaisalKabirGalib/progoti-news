@@ -3,6 +3,10 @@ import { menuItem } from "../types";
 
 
  export const AllCATEGORIES = [
+ {
+        label:{en:'home',bn:'home'},
+         type:'link',
+        },
     {
         label:{en:'Prochod',bn:'প্রচ্ছদ'},
         type:'link',

@@ -9,16 +9,18 @@ export interface INewsItemProps {
     description: string,
     image?: string,
     date?: string
-    id: number
+    id: any
 }
 
 export const trancuate = (str: string, length: number) => {
+    let re = /(<([^>]+)>)/ig
+    str = str.replace(re, '');
     return str.length > length ? str.substring(0, length) + '...' : str;
 }
 
 const NewsItem: FC<INewsItemProps> = ({ title, description, image, date, id }) => {
     return (
-        <div className=" overflow-clip max-h-min bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
+        <div className=" bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
             {image ? <a href="#">
                 <img className="rounded-t-lg h-64 w-full object-contain" src={image} alt="" />
             </a> : null}

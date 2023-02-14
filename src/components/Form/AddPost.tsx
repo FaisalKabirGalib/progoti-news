@@ -86,7 +86,7 @@ const AddPost: FC<IAddPostProps> = ({ }) => {
 
 
         trigger({
-            data: { ...data, img: image, 'description': editor, 'date': new Date().toDateString(), 'time': new Date().toLocaleTimeString() },
+            data: { ...data, img: image, 'description': editor },
             path: `/news/${data.cat}`
         }, {
             onSuccess: () => {
