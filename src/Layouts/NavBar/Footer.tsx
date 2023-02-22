@@ -1,6 +1,7 @@
-import { Button, Label, Textarea } from 'flowbite-react';
+import { Button, Label, Spinner, Textarea } from 'flowbite-react';
 import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { usePushToFirebase } from '../../hooks/useRequestMutation';
 
 export interface IFooterProps {
 }
@@ -9,20 +10,22 @@ const Footer: FC<IFooterProps> = ({ }) => {
     return (
 
         <footer className="p-4 bg-white sm:p-6 dark:bg-gray-900">
-            <div className="md:flex md:justify-between">
-                <div className="mb-6 md:mb-0">
-                    <div className="flex flex-col ">
-                        <img src={'https://raw.githubusercontent.com/FaisalKabirGalib/Public-Assets/main/logo.png'} height={200} width={200} />
-                        <p className='text-xs'>জ্ঞান যেখানে সীমাবদ্ধ, বুদ্ধি সেখানে আড়ষ্ট, মুক্তি সেখানে অসম্ভব</p>
+            <div className="flex flex-col items-center justify-center">
+                <img src={'https://raw.githubusercontent.com/FaisalKabirGalib/Public-Assets/main/logo.png'} height={200} width={200} />
 
-                    </div>
+                <div className="h-6"></div>
+                <div className='w-full flex-col items-center justify-center text-center ml-10'>
+                    <p>এ লড়াই প্রগতির</p>
+                    <p>এ লড়াই মুক্ত বুদ্ধির</p>
+                    <p>এ লড়াই বুদ্ধির মুক্তির</p>
                 </div>
 
-                <div className='flex-1 '>
-                    <NewsLetter />
-
-                </div>
             </div>
+
+            <div>
+                <NewsLetter />
+            </div>
+
             <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
             <div className="sm:flex sm:items-center sm:justify-between">
                 <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" className="hover:underline">Progoti</a>. All Rights Reserved.
@@ -57,7 +60,38 @@ const Footer: FC<IFooterProps> = ({ }) => {
 export default Footer
 
 function NewsLetter({ }) {
+
+
     const [comment, setComment] = useState("");
+
+    const { trigger, isMutating, error } = usePushToFirebase('comments')
+
+
+    const handleSend = () => {
+
+        if (comment.length > 0) {
+            console.log(comment);
+            setComment('');
+        }
+
+        // send to firebase
+
+        trigger({
+            data: {
+                comment: comment
+            },
+            path: '/comments'
+        }, {
+            onSuccess() {
+                setComment('');
+            },
+        })
+
+
+
+
+    }
+
     return (<div className="md:px-20">
         <div className="mb-2 block">
             <Label htmlFor="comment" value="Your message" />
@@ -65,10 +99,13 @@ function NewsLetter({ }) {
         <Textarea id="comment" className='p-2' value={comment} placeholder="Write your message here..." required={true} rows={4} onChange={(e) => setComment(e.target.value)} />
         <div className="h-3"></div>
         <div className="flex items-center ">
+            {isMutating && <div className="mr-2"> <Spinner /> </div>}
 
-            <Button onClick={() => setComment('')}>
+            <Button disabled={isMutating} onClick={handleSend}>
                 <span className="text-white">Send</span>
             </Button>
+
+
         </div>
     </div>);
 }

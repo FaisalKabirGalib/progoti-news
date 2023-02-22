@@ -22,14 +22,14 @@ const NewsDetailsPage: FC<INewsDetailsPageProps> = ({ }) => {
     return (
         <div className="lg:grid md:grid-cols-4 md:gap-x-4">
             <div className="col-span-3 grid md:grid-cols-2 sm:grid-col-1 sm:justify-center gap-y-6 gap-x-4">
-                <div className="flex flex-col items-center col-span-2">
+                <div className="flex flex-col  col-span-2">
                     {data?.val() && data.val()['img'] && <div className='flex items-center justify-center'>
-                        <img className='lg:max-w-lg  object-cover md:h-68 sm:max-w-full' src={data.val()['img']} alt={data.val()['heading']} />
+                        <img className='lg:max-w-lg object-cover md:h-68 sm:max-w-full' src={data.val()['img']} alt={data.val()['heading']} />
                     </div>}
-                    <div className="h-10"></div>
-                    <h1 className='font-bold text-gray-800 text-2xl'>{data?.val()['heading'] ?? 'No Heading'}</h1>
-                    <div className="h-10"></div>
-                    <p className='text-right text-gray-500'>{data?.val()['subheading'] ?? 'No subHeading'}</p>
+                    <div className="h-6"></div>
+                    <h1 className='font-bold pl-4 text-gray-800 text-3xl '>{data?.val()['heading'] ?? 'No Heading'}</h1>
+                    <div className="h-4"></div>
+                    <p className='pl-6 text-xl text-gray-500'>{data?.val()['subheading'] ?? 'No subHeading'}</p>
                     <ReactQuill value={`<p>${data?.val()['description'] ?? 'No Description'}</p>`} readOnly theme={'bubble'} />
 
                     {/*  */}

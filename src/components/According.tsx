@@ -1,5 +1,6 @@
 
 import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 import AccordItem from '../Layouts/NavBar/AccordItem';
 
 export interface IAccordingProps {
@@ -99,13 +100,14 @@ const progotiItems = [
 ]
 
 const According: FC<IAccordingProps> = ({ }) => {
+    const navigator = useNavigate()
     return (
         <section>
             <AccordItem heading={'প্রগতিপত্র'}>
                 <ul className='list-none flex-col'>
                     {progotiItems.map((item, index) => {
                         return (
-                            <li className='border-b-2 border-blue-300 p-2' key={index}>{item.label.bn}</li>
+                            <li onClick={() => navigator(`/news/${item.label.en}`)} className='border-b-2 border-blue-300 p-2' key={index}>{item.label.bn}</li>
                         )
                     })
                     }
@@ -117,7 +119,9 @@ const According: FC<IAccordingProps> = ({ }) => {
                 <ul className='list-none flex-col'>
                     {archiveItems.map((item, index) => {
                         return (
-                            <li className='border-b-2 border-blue-300 p-2' key={index}>{item.label.bn}</li>
+                            <li onClick={() => {
+                                navigator(`/news/${item.label.en}`)
+                            }} className='border-b-2 border-blue-300 p-2' key={index}>{item.label.bn}</li>
                         )
                     })}
                 </ul>

@@ -28,6 +28,7 @@ const TOOLBAR_OPTIONS = [
     [{ list: "ordered" }, { list: "bullet" }],
     [{ indent: "-1" }, { indent: "+1" }],
     ["image", "video"],
+    [{ 'script': 'sub' }, { 'script': 'super' }],
     ["align", "direction"],
     ["clean"]
 ];
@@ -45,6 +46,7 @@ const formates = [
     'link',
     'image',
     'video',
+    'script',
     'align',
     'direction',
     'clean'
@@ -127,10 +129,7 @@ const AddPost: FC<IAddPostProps> = ({ }) => {
                         {AllCATEGORIES.map(({ label }, i) => <option key={i} value={label.en}>{label.bn}</option>)}
                     </select>
                 </div>
-                <div className="mb-6">
-                    <label htmlFor="message" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your News</label>
-                    <textarea id="message" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your news.." rows={4} {...register('description')} />
-                </div>
+
 
 
                 <div className="mb-6">
