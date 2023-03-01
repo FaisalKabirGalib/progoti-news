@@ -1,6 +1,7 @@
 
 import { Alert, Spinner } from 'flowbite-react';
 import { FC } from 'react';
+import { NotFound } from '../assets/NotFound';
 import According from '../components/According';
 import { processDataFromCategory } from '../components/DashBoard';
 import NewsItem from '../components/NewsItem';
@@ -33,7 +34,7 @@ export const HomePage: FC<IHomePageProps> = () => {
 
 
         <div>
-            <p className='bg-stone-300 px-5 py-2'>Prothom Pata</p>
+            <p className='bg-stone-300 px-5 py-2'>প্রথম পাতা</p>
             <div className="h-10"></div>
             <div className="lg:grid md:grid-cols-4 md:gap-x-4">
 
@@ -43,6 +44,9 @@ export const HomePage: FC<IHomePageProps> = () => {
                         return <NewsItem key={index} title={item.heading ?? ''} description={item.description ?? ''} image={item.img} id={'home/' + item.id} />
                     })
                     }
+                    {data && processDataFromCategory(data).length === 0 && <div className=''>
+                        <NotFound /> </div>}
+
                 </div>
                 <div className='xs:hidden lg:block md:hidden '>
                     <According />

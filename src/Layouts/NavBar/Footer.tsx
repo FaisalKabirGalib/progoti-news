@@ -94,15 +94,15 @@ function NewsLetter({ }) {
 
     return (<div className="md:px-20">
         <div className="mb-2 block">
-            <Label htmlFor="comment" value="Your message" />
+            <Label htmlFor="comment" value="আপনার বার্তা জানান" />
         </div>
-        <Textarea id="comment" className='p-2' value={comment} placeholder="Write your message here..." required={true} rows={4} onChange={(e) => setComment(e.target.value)} />
+        <Textarea id="comment" className='p-2' value={comment} placeholder="আপনার বার্তা..." required={true} rows={4} onChange={(e) => setComment(e.target.value)} />
         <div className="h-3"></div>
         <div className="flex items-center ">
             {isMutating && <div className="mr-2"> <Spinner /> </div>}
 
             <Button disabled={isMutating} onClick={handleSend}>
-                <span className="text-white">Send</span>
+                <span className="text-white">বার্তা পাঠান</span>
             </Button>
 
 
