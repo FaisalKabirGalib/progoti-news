@@ -46,4 +46,4 @@ export const router = createBrowserRouter([
             },
         ],
     },
-], { basename: '/progoti-news/' });
+],);
